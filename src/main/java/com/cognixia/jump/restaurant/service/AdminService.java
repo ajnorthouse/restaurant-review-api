@@ -15,7 +15,7 @@ public class AdminService {
 	@Autowired
 	AdminRepository repo;
 	
-	//Get All Users
+	//Get All Admins
 	public List<Admin> getAllAdmins() {
 		return repo.findAll();
 	}
@@ -42,7 +42,7 @@ public class AdminService {
 		
 	}
 	
-	//Create user
+	//Create admin
 	public Admin createAdmin(@Valid Admin admin) {
 		
 		if(repo.existsById(admin.getAdminId())) {
@@ -52,7 +52,7 @@ public class AdminService {
 		
 	}
 	
-	//Update user
+	//Update admin
 	public Admin updateAdmin(@Valid Admin admin) {
 		
 		if(repo.existsById(admin.getAdminId())){
@@ -62,7 +62,7 @@ public class AdminService {
 		
 	}
 	
-	//Delete user
+	//Delete admin
 	public boolean deleteAdmin(long id) {
 		
 		if(repo.existsById(id)) {
@@ -71,5 +71,5 @@ public class AdminService {
 		}
 		return false;
 		
-	}
+	}	
 }
