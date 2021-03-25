@@ -61,7 +61,7 @@ public class RestaurantService {
 	}
 	
 	//DELETE RESTAURANT
-	public boolean deleteAdmin(long id) {
+	public boolean deleteRestaurant(long id) {
 		
 		if(repo.existsById((id))) {
 			repo.deleteById(id);
