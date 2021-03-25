@@ -11,5 +11,9 @@ import com.cognixia.jump.restaurant.model.Review;
 public interface ReviewRepository extends JpaRepository<Review, Long>{
 	
 	Optional<Review> findById(Long id);
+
+	Optional<Review> findByUserId(long userId);
+
+	Optional<Review> findByRestaurantId(long restaurantId);
 	
 }
