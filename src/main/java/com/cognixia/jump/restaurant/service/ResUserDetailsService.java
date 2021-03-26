@@ -8,23 +8,38 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.cognixia.jump.restaurant.model.Admin;
 import com.cognixia.jump.restaurant.model.User;
+import com.cognixia.jump.restaurant.repo.AdminRepository;
 import com.cognixia.jump.restaurant.repo.UserRepository;
 
 @Service
 public class ResUserDetailsService implements UserDetailsService{
 
 	@Autowired
-	UserRepository repo;
+	UserRepository urepo;
+	
+	@Autowired
+	AdminRepository arepo;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> user = repo.findByUsername(username);
+		Optional<User> user = urepo.findByUsername(username);
+		Optional<Admin> admin = arepo.findByUsername(username);
 		
-		if(!user.isPresent()) {
+		if(user.isPresent()) {
+			
+			return new ResUserDetails(user.get());
+			
+		} else if (admin.isPresent()) {
+			
+			return new ResUserDetails(admin.get());
+			
+		} else {
+			
 			throw new UsernameNotFoundException(username + " doesn't exists");
+			
 		}
-		return null;
 	}
 
 }

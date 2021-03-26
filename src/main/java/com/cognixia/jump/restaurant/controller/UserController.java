@@ -3,8 +3,10 @@ package com.cognixia.jump.restaurant.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,27 +26,28 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	//Get All Users
+	//Get All Users *For testing only comment out when deploy*
 	@GetMapping("/user")
 	public List<User> getAllUsers() {
 		return service.getAllUsers();
 	}
 	
-	//Find By ID
+	//Find By ID *For testing only comment out when deploy*
 	@GetMapping("/user/id/{id}")
-	public User getUserById(@PathVariable long id) {
+	public User getUserById(@PathVariable("id") long id) {
 		return service.getUserById(id);
 	}
 	
 	//Find By username
 	@GetMapping("/user/username/{username}")
-	public User getUserByUserName(@PathVariable String username) {
+	@PreAuthorize("#username == authentication.name")
+	public User getUserByUserName(@PathVariable("username") String username) {
 		return service.getUserByUserName(username);
 	}
 	
 	//Create user
 	@PostMapping("/user/add")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@RequestBody() User user) {
 		
 		User u = service.createUser(user);
 		if(u.getUserId() == -1L)
@@ -57,7 +60,7 @@ public class UserController {
 	
 	//Update user
 	@PutMapping("/user/update")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
+	public ResponseEntity<User> updateUser(@RequestBody  @Param("user") User user) {
 		
 		User u = service.updateUser(user);
 		if(u.getUserId() == -1L)

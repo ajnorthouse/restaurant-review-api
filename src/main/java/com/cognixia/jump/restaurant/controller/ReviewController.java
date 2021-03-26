@@ -49,7 +49,7 @@ public class ReviewController {
 	}
 	
 	//FIND REVIEW BY RESTAURANT ID
-	@GetMapping("/review/rrestaurantid/{restaurantId}")
+	@GetMapping("/review/restaurantid/{restaurantId}")
 	public Review getReviewByRestaurantId(@PathVariable long restaurantId) {
 		return service.getReviewByRestaurantId(restaurantId);
 	}
