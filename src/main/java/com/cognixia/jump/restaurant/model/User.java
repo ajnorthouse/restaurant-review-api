@@ -29,6 +29,8 @@ public class User {
 	@Column(columnDefinition = "integer default 0")
 	int reviewCount;
 	
+	final String role = "USER";
+
 	public User() {
 		super();
 		this.userId = -1L;
@@ -86,6 +88,10 @@ public class User {
 
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
+	}
+	
+	public String getRole() {
+		return role;
 	}
 
 	@Override

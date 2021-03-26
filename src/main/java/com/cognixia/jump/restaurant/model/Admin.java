@@ -23,6 +23,8 @@ public class Admin {
 	
 	@Column(columnDefinition = "varchar(255) default 'Captain'")
 	String name;
+	
+	final String role = "ADMIN";
 
 	public Admin() {
 		this.adminId = -1L;
@@ -72,6 +74,10 @@ public class Admin {
 		this.name = name;
 	}
 
+	public String getRole() {
+		return role;
+	}
+	
 	@Override
 	public String toString() {
 		return "Admin [adminId=" + adminId + ", username=" + username + ", name=" + name
