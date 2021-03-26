@@ -6,10 +6,12 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cognixia.jump.restaurant.model.Restaurant;
 import com.cognixia.jump.restaurant.repo.RestaurantRepository;
 
+@Service
 public class RestaurantService {
 	
 	@Autowired

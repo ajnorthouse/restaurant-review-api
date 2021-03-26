@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,8 @@ public class AdminController {
 	
 	//Find By username
 	@GetMapping("/admin/username/{username}")
-	public Admin getAdminByUserName(@PathVariable String username) {
+	@PreAuthorize("#username == authentication.name")
+	public Admin getAdminByUserName(@PathVariable("username") String username) {
 		return service.getAdminByUserName(username);
 	}
 	
