@@ -1,5 +1,6 @@
-target/**
-target/
+
+
+# Maven files
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -8,6 +9,10 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+target/**
+target/
+mvnw
+mvnw.cmd
 
 #This is ignored to allow for team-member differences in MySQL setup
 /src/main/resources/application.properties
