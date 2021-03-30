@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +29,21 @@ public class UserController {
 	
 	//Get All Users *For testing only comment out when deploy*
 	@GetMapping("/user")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public List<User> getAllUsers() {
 		return service.getAllUsers();
 	}
 	
 	//Find By ID *For testing only comment out when deploy*
 	@GetMapping("/user/id/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public User getUserById(@PathVariable("id") long id) {
 		return service.getUserById(id);
 	}
 	
 	//Find By username
 	@GetMapping("/user/username/{username}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	@PreAuthorize("#username == authentication.name")
 	public User getUserByUserName(@PathVariable("username") String username) {
 		return service.getUserByUserName(username);
@@ -47,6 +51,7 @@ public class UserController {
 	
 	//Create user
 	@PostMapping("/user/add")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<User> createUser(@RequestBody() User user) {
 		
 		User u = service.createUser(user);
@@ -60,6 +65,7 @@ public class UserController {
 	
 	//Update user
 	@PutMapping("/user/update")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<User> updateUser(@RequestBody  @Param("user") User user) {
 		
 		User u = service.updateUser(user);
@@ -73,6 +79,7 @@ public class UserController {
 	
 	//Delete user
 	@DeleteMapping("user/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<String> deleteUser(@PathVariable long id) {
 		
 		boolean update = service.deleteUser(id);

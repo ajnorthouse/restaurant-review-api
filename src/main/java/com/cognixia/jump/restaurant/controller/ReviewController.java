@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,36 +27,42 @@ public class ReviewController {
 	
 	//GET ALL REVIEWS
 	@GetMapping("/review")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public List<Review> getAllReviews() {
 		return service.getAllReviews();
 	}
 	
 	//FIND REVIEW BY ID
 	@GetMapping("/review/id/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public Review getReviewById(@PathVariable long id) {
 		return service.getReviewById(id);
 	}
 	
 	//FIND REVIEW BY RATING (filtering reviews based on no of stars)
 	@GetMapping("/review/rating/{rating}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public List<Review> getReviewsByRating(@PathVariable int rating) {
 		return service.getReviewsByRating(rating);
 	}
 	
 	//FIND REVIEW BY USER ID
 	@GetMapping("/review/userid/{userId}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public Review getReviewByUserId(@PathVariable long userId) {
 		return service.getReviewByUserId(userId);
 	}
 	
 	//FIND REVIEW BY RESTAURANT ID
 	@GetMapping("/review/restaurantid/{restaurantId}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public Review getReviewByRestaurantId(@PathVariable long restaurantId) {
 		return service.getReviewByRestaurantId(restaurantId);
 	}
 	
 	//CREATE REVIEW
 	@PostMapping("/review/add")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<Review> createRreview(@RequestBody Review rev) {
 		
 		Review newRev = service.createReview(rev);
@@ -68,6 +75,7 @@ public class ReviewController {
 	
 	//UPDATE REVIEW
 	@PutMapping("/review/update")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<Review> updateReview(@RequestBody Review rev) {
 		
 		Review toBeUpdated = service.updateReview(rev);
@@ -80,6 +88,7 @@ public class ReviewController {
 	
 	//DELETE REVIEW
 	@DeleteMapping("/review/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<String> deleteReview(@PathVariable long id) {
 		
 		boolean deleted = service.deleteReview(id);
