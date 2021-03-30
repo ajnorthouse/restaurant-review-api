@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,24 +27,28 @@ public class RestaurantController {
 	
 	//GET ALL RESTAURANTS
 	@GetMapping("/restaurant")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public List<Restaurant> getAllRestaurants() {
 		return service.getAllRestaurants();
 	}
 	
 	//FIND BY ID
 	@GetMapping("/restaurant/id/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public Restaurant getRestaurantById(@PathVariable long id) {
 		return service.getRestaurantById(id);
 	}
 	
 	//FIND BY NAME
 	@GetMapping("/restaurant/name/{name}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public Restaurant getRestaurantByName(@PathVariable String name) {
 		return service.getRestaurantByName(name);
 	}
 	
 	//CREATE RESTAURANT
 	@PostMapping("/restaurant/add")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<Restaurant> createRestauant(@RequestBody Restaurant res) {
 		
 		Restaurant newRes = service.createRestaurant(res);
@@ -54,6 +59,7 @@ public class RestaurantController {
 	
 	//UPDATE RESTAURANT
 	@PutMapping("/restaurant/update")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<Restaurant> updateRestaurant(@RequestBody Restaurant res) {	
 		Restaurant toBeUpdated = service.updateRestaurant(res);
 		if(toBeUpdated.getRestaurantId()==-1L)
@@ -63,6 +69,7 @@ public class RestaurantController {
 	
 	//DELETE RESTAURANT
 	@DeleteMapping("/restaurant/delete/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
 	public ResponseEntity<String> deleteRestaurant(@PathVariable long id) {
 		
 		boolean deleted = service.deleteRestaurant(id); 
