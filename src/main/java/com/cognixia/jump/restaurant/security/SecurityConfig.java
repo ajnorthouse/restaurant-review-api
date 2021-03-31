@@ -26,27 +26,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-		.authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll()
-		.antMatchers(HttpMethod.POST, "/api/restaurant/**").hasAuthority("ADMIN")
-		.antMatchers(HttpMethod.PUT, "/api/restaurant/**").hasAuthority("ADMIN")
-		.antMatchers(HttpMethod.DELETE, "/api/restaurant/**").hasAuthority("ADMIN")
-		.antMatchers(HttpMethod.GET, "/api/review/**").permitAll()
-		.antMatchers(HttpMethod.POST, "/api/review/**").hasAuthority("USER")
-		.antMatchers(HttpMethod.PUT, "/api/review/**").hasAuthority("USER")
-		.antMatchers(HttpMethod.DELETE, "/api/review/**").hasAuthority("USER")
-		.antMatchers("/api/user").hasAuthority("USER")
-		.antMatchers(HttpMethod.GET, "/api/user/**").hasAuthority("USER")
-		.antMatchers(HttpMethod.POST, "/api/user/**").permitAll()
-		.antMatchers(HttpMethod.PUT, "/api/user/**").hasAuthority("USER")
-		.antMatchers(HttpMethod.DELETE, "/api/user/**").hasAuthority("USER")
-		.antMatchers("/api/admin").hasAuthority("ADMIN")//change to ADMIN
-		.antMatchers("/api/admin/**").hasAuthority("ADMIN")
+		http
+			.csrf()
+				.disable()
+			.authorizeRequests()
+				//restaurant api
+				.antMatchers(HttpMethod.GET,	"/api/restaurant/**").permitAll()
+				.antMatchers(HttpMethod.POST,	"/api/restaurant/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT,	"/api/restaurant/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.DELETE,	"/api/restaurant/**").hasAuthority("ADMIN")
+				//review api
+				.antMatchers(HttpMethod.GET,	"/api/review/**").permitAll()
+				.antMatchers(HttpMethod.POST,	"/api/review/**").hasAuthority("USER")
+				.antMatchers(HttpMethod.PUT,	"/api/review/**").hasAuthority("USER")
+				.antMatchers(HttpMethod.DELETE,	"/api/review/**").hasAuthority("USER")
+				//user api
+				.antMatchers(HttpMethod.GET,	"/api/user/username/**").permitAll()
+				.antMatchers(HttpMethod.GET,	"/api/user/").hasAuthority("USER")
+				.antMatchers(HttpMethod.POST,	"/api/user/**").permitAll()
+				.antMatchers(HttpMethod.PUT,	"/api/user/**").hasAuthority("USER")
+				.antMatchers(HttpMethod.DELETE,	"/api/user/**").hasAuthority("USER")
+				//admin api
+				.antMatchers(HttpMethod.GET,	"/api/admin/username/**").permitAll()
+				.antMatchers(HttpMethod.GET,	"/api/admin/").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.POST,	"/api/admin/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT,	"/api/admin/**").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.DELETE,	"/api/admin/**").hasAuthority("ADMIN")
 		.and()
-		.formLogin()
-		.and()
-		.httpBasic();
+			.httpBasic();
 	}
 
 }
