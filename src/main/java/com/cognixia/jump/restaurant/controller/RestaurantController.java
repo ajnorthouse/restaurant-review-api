@@ -1,5 +1,6 @@
 package com.cognixia.jump.restaurant.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,14 @@ public class RestaurantController {
 		
 		return new ResponseEntity<>("Restaurant deleted Successfully", HttpStatus.OK);
 		
+	}
+	
+	//FUZZY SEARCH
+	@GetMapping("/restaurant/fuzzysearch/{searchString}")
+	@CrossOrigin(origins = "http://localhost:3000")
+	public List<Restaurant> fuzzySearch(@PathVariable String searchString) {
+	
+		return service.fuzzySearch(searchString);
 	}
 	
 }

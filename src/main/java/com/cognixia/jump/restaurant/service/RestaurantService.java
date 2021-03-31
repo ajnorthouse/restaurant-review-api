@@ -1,7 +1,9 @@
 package com.cognixia.jump.restaurant.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -72,6 +74,22 @@ public class RestaurantService {
 		
 		return false;
 		
+	}
+	
+	//FUZZY SEARCH
+	public List<Restaurant> fuzzySearch(String searchString) {
+		List<Restaurant> results = new ArrayList<Restaurant>();
+		
+			
+		List<Restaurant> allRes = repo.findAll();
+		
+			
+		results = allRes.stream()
+				.filter(res -> res.getName().equals(searchString))
+						.collect(Collectors.toList());
+				
+		
+		return results;
 	}
 	
 }
