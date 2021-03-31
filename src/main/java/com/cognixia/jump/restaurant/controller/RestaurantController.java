@@ -84,7 +84,7 @@ public class RestaurantController {
 	@GetMapping("/restaurant/fuzzysearch/{searchString}")
 	@CrossOrigin(origins = "http://localhost:3000")
 	public List<Restaurant> fuzzySearch(@PathVariable String searchString) {
-		
+	
 		return service.fuzzySearch(searchString);
 	}
 	
