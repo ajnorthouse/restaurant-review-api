@@ -40,6 +40,16 @@ public class User {
 		this.reviewCount = 0;
 	}
 
+	public User(@NotNull(message = "User must have a username") String username,
+			@NotNull(message = "User must have a password") String password, String name, int reviewCount) {
+		super();
+		this.userId = -1L;
+		this.username = "N/A";
+		this.password = "N/A";
+		this.name = "Anonymous";
+		this.reviewCount = 0;
+	}
+
 	public User(Long userId, @NotNull(message = "User must have a username") String username,
 			@NotNull(message = "User must have a password") String password, String name, int reviewCount) {
 		super();

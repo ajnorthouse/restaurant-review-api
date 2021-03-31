@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+//This is from David's security implementation, uncomment it to try it out!
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,8 @@ public class AdminController {
 	//Find By username
 	@GetMapping("/admin/username/{username}")
     @CrossOrigin(origins = "http://localhost:3000")
-	@PreAuthorize("#username == authentication.name")
+	//This is from David's security implementation, uncomment it to try it out!
+//	@PreAuthorize("#username == authentication.name")
 	public Admin getAdminByUserName(@PathVariable("username") String username) {
 		return service.getAdminByUserName(username);
 	}
