@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//Security setup for the working presentation code:
 		http
 			.csrf()
 				.disable()
@@ -54,6 +55,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.DELETE,	"/api/admin/**").hasAuthority("ADMIN")
 		.and()
 			.httpBasic();
+		
+		//Security from David's Presentation:
+//		http.csrf().disable()
+//		.authorizeRequests()
+//		.antMatchers(HttpMethod.GET, "/api/restaurant/**").permitAll()
+//		.antMatchers(HttpMethod.POST, "/api/restaurant/**").hasAuthority("ADMIN")
+//		.antMatchers(HttpMethod.PUT, "/api/restaurant/**").hasAuthority("ADMIN")
+//		.antMatchers(HttpMethod.DELETE, "/api/restaurant/**").hasAuthority("ADMIN")
+//		.antMatchers(HttpMethod.GET, "/api/review/**").permitAll()
+//		.antMatchers(HttpMethod.POST, "/api/review/**").hasAuthority("USER")
+//		.antMatchers(HttpMethod.PUT, "/api/review/**").hasAuthority("USER")
+//		.antMatchers(HttpMethod.DELETE, "/api/review/**").hasAuthority("USER")
+//		.antMatchers("/api/user").hasAuthority("USER")
+//		.antMatchers(HttpMethod.GET, "/api/user/**").hasAuthority("USER")
+//		.antMatchers(HttpMethod.POST, "/api/user/**").permitAll()
+//		.antMatchers(HttpMethod.PUT, "/api/user/**").hasAuthority("USER")
+//		.antMatchers(HttpMethod.DELETE, "/api/user/**").hasAuthority("USER")
+//		.antMatchers("/api/admin").hasAuthority("ADMIN")//change to ADMIN
+//		.antMatchers("/api/admin/**").hasAuthority("ADMIN")
+//		.and()
+//		.formLogin()
+//		.and()
+//		.httpBasic();
 	}
 
 }
